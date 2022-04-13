@@ -1,0 +1,12 @@
+#include "Background.h"
+
+
+
+Background::Background(const std::string &sky, const std::string &building){
+    sf::Texture sky_t;
+    sf::Texture building_t;
+    if(sky_t.loadFromFile(sky) && building_t.loadFromFile(building)){
+        
+    }
+    
+}

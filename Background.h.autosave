@@ -1,0 +1,13 @@
+#pragma once
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+
+
+
+class Background : public sf::Sprite{
+    
+public:
+    Background(const std::string &sky, const std::string &building);
+private:
+
+};

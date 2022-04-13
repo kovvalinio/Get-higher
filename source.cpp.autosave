@@ -1,0 +1,179 @@
+#include <iostream>
+#include <iostream>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <ctime>
+#include "AnimatedSprite.h"
+#include <memory>
+
+AnimatedSprite::AnimatedSprite(int fps,const std::string &path) : time_between_f(sf::seconds(1.0/fps)){
+if(whole.loadFromFile(path)){
+    setTexture(whole);
+}
+}
+
+void AnimatedSprite::animation(sf::Time &elapsed){
+    time_passed += elapsed;
+
+    if(time_passed > fps_passed){
+        setTextureRect(*frames[frame_number]);
+        fps_passed += time_between_f;
+        frame_number++;
+
+    }
+
+    if(frame_number == frames.size()){
+        time_passed = time_passed - fps_passed;
+        fps_passed = sf::seconds(0);
+        frame_number = 0;
+    }
+
+}
+
+void AnimatedSprite::add_animation_frame(const sf::IntRect &f){
+    frames.emplace_back(std::move(std::make_unique<sf::IntRect>(f)));
+}
+
+void AnimatedSprite::moving(sf::Time &elapsed, const sf::RenderWindow &window,const bool &collision){
+    y_vel = y_vel + elapsed.asSeconds()*gravity;
+
+    if(getGlobalBounds().top + getGlobalBounds().height >= window.getSize().y){
+    if(y_vel >0){
+        y_vel = 0;
+    }
+
+    }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+    x_vel = -9000;
+    }
+
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+        x_vel = 9000;
+    }
+
+    else{
+        x_vel = 0;
+    }
+
+
+
+    if(collision){
+        y_vel = 0;
+    }
+
+    if(y_vel == 0){
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+            y_vel = -25000;
+        }
+    }
+
+    if(y_vel != 0 || x_vel != 0){
+    move(x_vel*elapsed.asSeconds(),elapsed.asSeconds()*y_vel);
+}
+
+
+
+}
+
+Platforms::Platforms(const std::string &path){
+if(whole.loadFromFile(path)){
+    whole.setRepeated(true);
+    frames.emplace_back(std::move(std::make_unique<sf::IntRect>(sf::IntRect(0,0,512,128))));
+    frames.emplace_back(std::move(std::make_unique<sf::IntRect>(sf::IntRect(0,0,256,128))));
+    frames.emplace_back(std::move(std::make_unique<sf::IntRect>(sf::IntRect(0,0,384,128))));
+    srand(14678*time(NULL));
+
+    setTexture(whole);
+    setTextureRect(*frames[rand()%3]);
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+bool AnimatedSprite::collision(const std::vector<Platforms> &a){
+    if(y_vel >= 0){
+for(int i = 0 ; i < a.size() ; i++){
+    if(getGlobalBounds().top + getGlobalBounds().height >= a[i].getGlobalBounds().top &&
+            getGlobalBounds().top + getGlobalBounds().height <= a[i].getGlobalBounds().top + a[i].getGlobalBounds().height &&
+            getGlobalBounds().left + getGlobalBounds().width - 20 >= a[i].getGlobalBounds().left &&
+            getGlobalBounds().left + 20  <= a[i].getGlobalBounds().left + a[i].getGlobalBounds().width){
+        return true;
+
+
+
+    }
+    }
+    }
+    else{
+        return false;
+    }
+}
+
+
+
+void create_shapes(std::vector<std::unique_ptr<sf::Sprite>> &shapes_vec) {
+    for(int i = 0 ; i < 5 ; i++){
+
+
+
+    shapes_vec.emplace_back(std::move(std::make_unique<Platforms>(platforms[i])));
+    }
+
+    shapes_vec.emplace_back(std::move(std::make_unique<AnimatedSprite>(hero)));
+
+}
+
+
+void make_platforms(std::vector<Platforms> &platforms){
+    srand(12341*time(NULL));
+    if(platforms.size() != 5){
+    for(int i = 0 ; i < 5 ; i++){
+       Platforms platform("ground0 copy.png");
+       platform.setPosition(rand()%700, i*200);
+       platforms.emplace_back(platform);
+    }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
