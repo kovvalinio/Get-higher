@@ -2,15 +2,9 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-
-
-
-
-
 class Bullet : public sf::Sprite{
 public:
     Bullet();
-
     void animation(const sf::Time &elapsed);
     void set_bullet_p(const sf::FloatRect &bounds, const bool &turn1, const sf::Time &elapsed);
 private:

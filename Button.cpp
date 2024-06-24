@@ -1,9 +1,6 @@
 #include "Button.h"
 #include <iostream>
 
-
-
-
 Button::Button(){
 
     font.loadFromFile("C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/Arial.ttf");

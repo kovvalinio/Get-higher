@@ -1,11 +1,5 @@
 #include "Hearts.h"
 
-
-
-
-
-
-
 Hearts::Hearts(){
     whole.loadFromFile("C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/0.bmp");
     half.loadFromFile("C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/1.bmp");

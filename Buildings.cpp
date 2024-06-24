@@ -1,7 +1,5 @@
 #include "Buildings.h"
 
-
-
 Buildings::Buildings(const std::string &path_b, const float &x){
 whole.setRepeated(1);
     if(whole.loadFromFile((path_b))){

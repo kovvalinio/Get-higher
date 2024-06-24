@@ -6,10 +6,6 @@
 #include "Platforms.h"
 #include "aMonster.h"
 
-
-
-
-
 class AnimatedSprite : public sf::Sprite {
 public:
 
@@ -28,7 +24,6 @@ public:
     void change_loosed(const bool &i);
     bool return_turn();
 
-
 private:
 
     sf::Time time_between_f;
@@ -46,7 +41,3 @@ private:
     bool loosed = 0;
 
 };
-
-
-
-

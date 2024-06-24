@@ -4,9 +4,6 @@
 #include "Button.h"
 #include <algorithm>
 
-
-
-
 World::World(const int &fps, const std::string &path_a_r, const std::string &path_a_l, const std::string &path_p, const std::string &path_b, const std::string &sky,const float &x, const float &y ): sky_(sky,x,y),build_(path_b,x), hero_(fps,path_a_r,path_a_l), platforms(path_p){
 arial.loadFromFile("C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/Arial.ttf");
 name_of_game.loadFromFile("C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/gethigher.png");
@@ -17,11 +14,7 @@ score_from_boss.setString("+50 000!");
 score_from_boss.setFont(arial);
 score_from_boss.setFillColor(sf::Color::Black);
 score_from_boss.setPosition(-300,100);
-
 }
-
-
-
 
 void World::draw_all(sf::RenderWindow &window){
     score.setFont(arial);
@@ -30,7 +23,6 @@ void World::draw_all(sf::RenderWindow &window){
     score.setString(scr);
     score.setCharacterSize(18);
 
-
     window.clear(sf::Color::Black);
     window.draw(sky_);
     window.draw(build_);
@@ -38,12 +30,6 @@ void World::draw_all(sf::RenderWindow &window){
     window.draw(score_from_boss);
 
     switch_hearts();
-
-
-
-
-
-
 
     for(int i = 0 ; i < platforms.size() ; i++){
     window.draw(platforms[i]);
@@ -111,13 +97,10 @@ void World::move_scr(sf::Time &elapsed){
 
         if(hero_.ret_floor()){
             hero_.set_floor(0);
-
         }
     }
     }
-
 }
-
 
 void World::r_a_platf(){
     if(platforms[0].getGlobalBounds().top + platforms[0].getGlobalBounds().height >620){
@@ -174,8 +157,6 @@ void World::game_over(sf::RenderWindow &window,sf::Text &game_o, const sf::Time 
         window.draw(press_enter);
     }
 
-
-
     if(game_o.getGlobalBounds().top + game_o.getGlobalBounds().height/2 < window.getSize().y/3){
     game_o.move(0,elapsed.asSeconds()*200);
     }
@@ -183,9 +164,6 @@ void World::game_over(sf::RenderWindow &window,sf::Text &game_o, const sf::Time 
     else{
         switch_to_rec = 1;
     }
-
-
-
 
     window.draw(game_o);
 
@@ -224,8 +202,6 @@ void World::menu(sf::RenderWindow &window, const sf::Vector2i &mouse_pos){
     cre_b.swich_scr(m_p_r,mouse_pos);
     ex_b.swich_scr(m_p_r,mouse_pos);
 
-
-
     play_b.set_type(0);
     play_b.setOrigin(play_b.getLocalBounds().width/2,play_b.getLocalBounds().height/2);
     play_b.setPosition(window.getSize().x/2,window.getSize().y/2);
@@ -251,8 +227,6 @@ void World::menu(sf::RenderWindow &window, const sf::Vector2i &mouse_pos){
     window.draw(cre_b);
     window.draw(ex_b);
 
-
-
 }
 
 
@@ -271,13 +245,11 @@ void World::set_default(){
     hero_.change_loosed(0);
     points = 0;
     lifes = 6;
-
 }
 
 void World::show_records(sf::RenderWindow &window, const sf::Vector2i &mouse_pos){
     window.draw(sky_);
     window.draw(build_);
-
 
     std::string records_to_show;
 
@@ -315,20 +287,12 @@ void World::show_records(sf::RenderWindow &window, const sf::Vector2i &mouse_pos
         }
         rec.setString(records_to_show);
     }
-
-
     window.draw(rec);
     window.draw(bck_b);
-
-
-
-
-
 }
 
 void World::read_rec_from_file(){
     std::fstream file;
-
 
     file.open("records.txt", std::ios::in);
 
@@ -356,13 +320,9 @@ void World::read_rec_from_file(){
             score_a_name.erase(score_a_name.begin());
 
             }
-
-
-
     }
     file.close();
 }
-
 
 void World::show_credits(sf::RenderWindow &window, const sf::Vector2i &mouse_pos){
     window.draw(sky_);
@@ -385,7 +345,6 @@ void World::show_credits(sf::RenderWindow &window, const sf::Vector2i &mouse_pos
     credits_to_show.setString(credits);
     credits_to_show.setCharacterSize(18);
     window.draw(credits_to_show);
-
 }
 
 bool sort(const std::vector<std::string> &i, const std::vector<std::string> &k){
@@ -399,10 +358,7 @@ else{
 }
 
 void World::sort_records(){
-
     std::sort(v_of_records.begin(), v_of_records.end(), sort);
-
-
 }
 
 void World::loose_life(const bool &collision, const sf::Time &elapsed){
@@ -424,12 +380,8 @@ void World::loose_life(const bool &collision, const sf::Time &elapsed){
             immortality = sf::seconds(1);
         }
     }
-
-
     }
-
    }
-
 
 }
 
@@ -477,26 +429,3 @@ void World::health_bar(){
     boss_t.setFillColor(sf::Color::Black);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

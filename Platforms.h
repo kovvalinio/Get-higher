@@ -13,15 +13,9 @@ public:
     sf::Sprite ret_s();
     int return_l();
     void level_defaul();
-
-
-
-
-
 private:
 
     sf::Texture whole;
     std::vector<sf::IntRect> platf_r;
     int level;
-
 };

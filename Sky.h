@@ -3,8 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "included.h"
 
-
-
 class Sky : public sf::Sprite{
 
 public:

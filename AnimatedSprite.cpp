@@ -15,8 +15,6 @@ if(whole_r.loadFromFile(path_r)){
     setPosition(0,400);
 }
 whole_l.loadFromFile(path_l);
-
-
 }
 
 void AnimatedSprite::animation(sf::Time &elapsed){
@@ -38,8 +36,6 @@ void AnimatedSprite::animation(sf::Time &elapsed){
 
     }
     }
-
-
     if(frame_number == frames.size()/2){
         time_passed = time_passed - fps_passed;
         fps_passed = sf::seconds(0);
@@ -98,19 +94,6 @@ void AnimatedSprite::moving(sf::Time &elapsed, const sf::RenderWindow &window,co
 }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 bool AnimatedSprite::collision(const Platforms &a){
     if(y_vel >= 0){
 for(int i = 0 ; i < a.size() ; i++){
@@ -130,9 +113,6 @@ for(int i = 0 ; i < a.size() ; i++){
     }
 }
 
-
-
-
 bool AnimatedSprite::ret_floor(){
     return floor;
 }
@@ -140,8 +120,6 @@ bool AnimatedSprite::ret_floor(){
 void AnimatedSprite::set_floor(const bool &i){
     floor = i;
 }
-
-
 
 void AnimatedSprite::set_dir(const bool &turn){
     if(turn != actual_turn){
@@ -168,7 +146,6 @@ void AnimatedSprite::floor_default(){
     floor = 1;
 }
 
-
 bool AnimatedSprite::collision_with_monster(const Monster &monster){
     if (getGlobalBounds().left < monster.getGlobalBounds().left + monster.getGlobalBounds().width &&
             getGlobalBounds().top +getGlobalBounds().height > monster.getGlobalBounds().top && getGlobalBounds().top  < monster.getGlobalBounds().top + monster.getGlobalBounds().height &&
@@ -188,40 +165,3 @@ void AnimatedSprite::change_loosed(const bool &i){
 bool AnimatedSprite::return_turn(){
     return actual_turn;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

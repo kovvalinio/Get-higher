@@ -7,37 +7,24 @@
 #include "World.h"
 #include <iostream>
 
-
-
 using namespace std;
 
 HWND hWnd = GetConsoleWindow();
-
-
 
 int main()
 {   ShowWindow( hWnd, SW_HIDE );
 
     sf::RenderWindow window(sf::VideoMode(800, 600), "Get higher!");
 
-
-
-
-
-
     sf::Clock clock;
     sf::Time time;
 
-
-
-
-    World world(10, "C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/sprites.png",
-                "C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/sprites1.png",
-                "C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/ground0 copy.png",
-                "C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/buildings-layer.png",
-                "C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/Sky-layer.png",
+    World world(10, "C:/Users/starc/Documents/GitHub/Get-higher/attributes/sprites.png",
+                "C:/Users/starc/Documents/GitHub/Get-higher/attributes/sprites1.png",
+                "C:/Users/starc/Documents/GitHub/Get-higher/attributes/ground0 copy.png",
+                "C:/Users/starc/Documents/GitHub/Get-higher/attributes/buildings-layer.png",
+                "C:/Users/starc/Documents/GitHub/Get-higher/attributes/Sky-layer.png",
                 window.getSize().x,window.getSize().y);
-
 
     world.hero_.add_animation_frame(sf::IntRect(0, 2, 85, 98));
     world.hero_.add_animation_frame(sf::IntRect(85, 2, 85, 98)); // hero running frame 1
@@ -61,22 +48,14 @@ int main()
     game_over.setOrigin(game_over.getLocalBounds().width/2,game_over.getLocalBounds().height/2);
     game_over.setPosition(window.getSize().x/2,-100);
 
-
-
-
-
-
-
     while (window.isOpen()) {
         sf::Uint32 unicode = 0;
         sf::Event event;
         sf::Vector2i mouse_pos;
 
-
         time = clock.restart();
 
         mouse_pos = sf::Mouse::getPosition(window);
-
 
         while (window.pollEvent(event)) {
 
@@ -95,9 +74,6 @@ int main()
             world.menu(window, mouse_pos);
             game_over.setPosition(window.getSize().x/2,-100);
         }
-
-
-
 
         if(world.m_p_r == 1){
 
@@ -132,7 +108,4 @@ int main()
 
 
     }
-
-
-
 }

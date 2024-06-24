@@ -4,12 +4,6 @@
 #include "Platforms.h"
 #include "aBullet.h"
 
-
-
-
-
-
-
 class Monster : public sf::Sprite{
 public:
     Monster();
@@ -19,8 +13,6 @@ public:
     int return_health();
     void substr_health(Bullet &bullet);
     void set_health(const int &h);
-
-
 private:
     sf::Texture whole1;
     sf::Texture whole2;
@@ -30,5 +22,4 @@ private:
     float gravity = 1800.0f;
     bool turn = 1;
     int health;
-
 };

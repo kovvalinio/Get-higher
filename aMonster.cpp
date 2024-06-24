@@ -1,19 +1,11 @@
 #include "aMonster.h"
 
-
-
-
-
-
 Monster::Monster(){
     whole1.loadFromFile("C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/frame-1.png");
     whole2.loadFromFile("C:/Users/Michal/OneDrive/Documents/Qt projects/Get higher/frame-2.png");
     setScale(0.1,0.1);
     setPosition(1123, 0);
 }
-
-
-
 
 void Monster::animation(const sf::Time &elapsed, const Platforms &platforms, const float &hero_pos){
     time_passed += elapsed;
@@ -58,17 +50,14 @@ void Monster::animation(const sf::Time &elapsed, const Platforms &platforms, con
 
 bool Monster::collision(const Platforms &a){
     if(y_vel >= 0){
-for(int i = 0 ; i < a.size() ; i++){
-    if(getGlobalBounds().top + getGlobalBounds().height >= a[i].getGlobalBounds().top &&
+        for(int i = 0 ; i < a.size() ; i++){
+            if(getGlobalBounds().top + getGlobalBounds().height >= a[i].getGlobalBounds().top &&
             getGlobalBounds().top + getGlobalBounds().height <= a[i].getGlobalBounds().top + a[i].getGlobalBounds().height &&
             getGlobalBounds().left + getGlobalBounds().width - 20 >= a[i].getGlobalBounds().left &&
             getGlobalBounds().left + 20  <= a[i].getGlobalBounds().left + a[i].getGlobalBounds().width){
-        return true;
-
-
-
-    }
-    }
+                return true;
+            }
+        }
     }
     else{
         return false;
@@ -77,8 +66,6 @@ for(int i = 0 ; i < a.size() ; i++){
 
 void Monster::spawn(){
     setPosition(20,200);
-
-
 }
 
 int Monster::return_health(){

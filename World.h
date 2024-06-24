@@ -25,8 +25,6 @@ struct World {
     void switch_hearts();
     void health_bar();
 
-
-
     Buildings build_;
     Sky sky_;
     AnimatedSprite hero_;
@@ -61,7 +59,5 @@ struct World {
     Bullet bullet_;
     int actual_plat = 0;
     sf::Text score_from_boss;
-
-
 
 };
